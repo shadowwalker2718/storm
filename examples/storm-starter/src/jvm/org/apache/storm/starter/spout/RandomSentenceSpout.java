@@ -38,7 +38,6 @@ public class RandomSentenceSpout extends BaseRichSpout {
   SpoutOutputCollector _collector;
   Random _rand;
 
-
   @Override
   public void open(Map<String, Object> conf, TopologyContext context, SpoutOutputCollector collector) {
     _collector = collector;
@@ -48,8 +47,9 @@ public class RandomSentenceSpout extends BaseRichSpout {
   @Override
   public void nextTuple() {
     Utils.sleep(100);
-    String[] sentences = new String[]{sentence("the cow jumped over the moon"), sentence("an apple a day keeps the doctor away"),
-            sentence("four score and seven years ago"), sentence("snow white and the seven dwarfs"), sentence("i am at two with nature")};
+    String[] sentences = new String[] { sentence("the cow jumped over the moon"),
+        sentence("an apple a day keeps the doctor away"), sentence("four score and seven years ago"),
+        sentence("snow white and the seven dwarfs"), sentence("i am at two with nature") };
     final String sentence = sentences[_rand.nextInt(sentences.length)];
 
     LOG.debug("Emitting tuple: {}", sentence);
